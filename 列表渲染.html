@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ex1">
+        <li v-for="item in items" :key="item.message">{{ item.message }}</li>
+    </ul>
+
+    <ul id="ex2">
+        <li v-for="(item, index) in items">
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+
+    <!-- <ul id="ex3">
+        <li v-for="value of object">
+            {{ value }}
+        </li>
+    </ul> -->
+
+    <ul id="ex3">
+        <li v-for="(value, name, index) of object">
+            {{ index }}.{{ name }}: {{ value }}
+        </li>
+    </ul>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        const ex1 = new Vue({
+            el: '#ex1',
+            data: {
+                items: [
+                    {message: 'Foo'},
+                    {message: 'Bar'}
+                ]
+            }
+        })
+
+        const ex2 = new Vue({
+            el: '#ex2',
+            data: {
+                parentMessage: 'Parent',
+                items: [
+                    {message: 'Foo'},
+                    {message: 'Bar'}
+                ]
+            }
+        })
+
+        const ex3 = new Vue({
+            el: '#ex3',
+            data: {
+                object:{
+                    title: 'Vue',
+                    author: 'Allen',
+                    publishedAt: '2021/02/17'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

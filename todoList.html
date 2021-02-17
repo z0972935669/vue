@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="todo_list">
+        <form v-on:submit.prevent="addNewTodo">
+            <label for="new_todo">新增</label>
+            <input type="text" v-model="newTodoText" id="new_todo" placeholder="新增資料">
+            <button>新增</button>
+        </form>
+
+        <ul>
+            <li is="todo_item" v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
+        </ul>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('todo_item', {
+            template: `\
+                <li>\
+                    {{ title }}\
+                    <button v-on:click="$emit(\'remove\')">刪除</button>\
+                </li>\
+            `,
+            props: ['title']
+        })
+
+        new Vue({
+            el: '#todo_list',
+            data: {
+                newTodoText: '',
+                todos: [
+                    {id: 1, title: 'a'},
+                    {id: 2, title: 'b'},
+                    {id: 3, title: 'c'}
+                ],
+                nextTodoId: 4
+            },
+            methods: {
+                addNewTodo() {
+                    this.todos.push({
+                        id: this.nextTodoId++,
+                        title: this.newTodoText
+                    })
+                    this.newTodoText = ''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

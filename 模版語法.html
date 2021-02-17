@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .color {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 文本 -->
+    <!-- v-once: 只能被渲染一次，首次渲染後，即使資料發生變化，也不會被重新渲染，用於靜態內容展示 -->
+    <div id="app7">
+        <span v-once>{{ content }}</span>
+    </div>
+
+    <!-- 原始HTML -->
+    <div id="app7_1">
+        <p v-text="msg">我存在</p>
+    </div>
+
+    <div id="app7_2">
+        <p v-html="msg">Google</p>
+    </div>
+
+    <!-- 屬性 -->
+    <div id="app7_3">
+        <img v-bind:src="imgSrc" alt="">
+    </div>
+
+    <div id="app7_4">
+        <div v-bind:class="color">bbb</div>
+    </div>
+
+    <!-- 純數字跑迴圈 -->
+    <div id="app7_5">
+        <ul>
+            <li v-for="item in 5">
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        const app7 = new Vue({
+            el: '#app7',
+            data: {
+                content: 'aaa'
+            }
+        })
+
+        app7.content = 'bbb';
+
+        const app7_1 = new Vue({
+            el: '#app7_1',
+            data: {
+                msg: '你走開'
+            }
+        })
+
+        const app7_2 = new Vue({
+            el: '#app7_2',
+            data: {
+                msg: '<a href="http://www.google.com" target="_blank" v-on:click.prevent="alert("aaa")">Google</a>'
+            }
+        })
+
+        const app7_3 = new Vue({
+            el: '#app7_3',
+            data: {
+                imgSrc: 'imgs/aaa.jpg'
+            }
+        })
+
+        const app7_4 = new Vue({
+            el: '#app7_4',
+            data: {
+                color: 'color'
+            }
+        })
+
+        const app7_5 = new Vue({
+            el: '#app7_5',
+            data: {}
+        })
+    </script>
+</body>
+</html>

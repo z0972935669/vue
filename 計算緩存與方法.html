@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">反向訊息</button>
+        <p>反向訊息 {{ reversedMessage }}</p>
+        <p>現在時間: {{ now }}</p>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello'
+            },
+            methods: {
+                // 計算 getter
+                reverseMessage() {
+                    // this 指向虛擬機實例
+                    this.message = this.message.split('').reverse().join('')
+                }
+            },
+            computed: {
+                reversedMessage() {
+                    // this 指向虛擬機實例
+                    return this.message.split('').reverse().join('')
+                },
+                now() {
+                    return Date.now()
+                }
+            },
+        })
+    </script>
+</body>
+</html>
