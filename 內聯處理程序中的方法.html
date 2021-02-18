@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app14">
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+        <button v-on:click="warn('表格尚未提交', $event)">Submit</button>
+        <button v-on:click="warning">Test</button>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app14',
+            methods: {
+                say(message) {
+                    alert(message)
+                },
+                warn(message, event) {
+                    if(event) {
+                        event.preventDefault()
+                    }
+                    alert(message)
+                },
+                warning() {
+                    alert('stop');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

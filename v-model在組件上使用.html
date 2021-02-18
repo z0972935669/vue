@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app22">
+        <!-- <input
+          v-bind:value="searchText"
+          v-on:input="searchText = $event.target.value"
+        >
+        <input type="hidden" v-model="searchText"> -->
+
+        <custom_input v-bind:value="searchText" v-on:input="searchText = $event"></custom_input>
+        <custom_input type="hidden" v-model="searchText"></custom_input>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('custom_input', {
+            props: ['value'],
+            template: `
+                <input v-bind:value="value" v-on:input="$emit('input', $event.target.value)">
+            `
+        })
+
+        new Vue({
+            el: '#app22',
+            data: {
+                searchText: '',
+                selectText: ''
+            }
+        })
+    </script>
+</body>
+</html>

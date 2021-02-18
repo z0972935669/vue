@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app15">
+        <!-- 停止click事件傳播 -->
+        <a v-on:click.stop="doThis"></a>
+
+        <!-- 提交事件將不再加載頁面 -->
+        <form v-on:submit.prevent="onSubmit"></form>
+
+        <!-- 修飾符可以連接 -->
+        <a v-on:click.stop.prevent="doThat"></a>
+
+        <!-- 修飾符 -->
+        <form v-on:submit.prevent></form>
+
+        <!-- 添加事件偵聽器時使用捕獲模式 -->
+        <!-- 即以內部元素為目標的事件在此元素處理之前先在這里處理 -->
+        <div v-on:click.capure="doThis"></div>
+
+        <!-- 僅當event.target是元素本身時才觸發處理程序 -->
+        <!-- 即不是來自子元素 -->
+        <div v-on:click.self="doThat">a</div>
+
+        <!-- 使用修飾符時順序很重要，因為相關代碼以相同順序生成。因此，使用v-on:click.prevent.self將阻止所有單擊，而v-on:click.self.prevent只會阻止對元素本身的單擊。 -->
+
+        <!-- 點擊事件最多會觸發一次 -->
+        <a v-on:click.once="doThis"></a>
+
+        <!-- 滾動事件的默認行為（滾動）將發生 -->
+        <!-- 立即，而不是等待`onScroll`完成 -->
+        <!-- 如果包含`event.preventDefault()` -->
+        <div v-on:scroll.passive="onScroll"></div>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app15',
+            methods: {
+                doThis() {
+                    console.log('stop :>> ', 'stop');
+                },
+                onSubmit() {
+                    console.log('prevent :>> ', 'prevent');
+                },
+                doThat() {
+                    console.log('this :>> ', this);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

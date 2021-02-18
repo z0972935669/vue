@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app20">
+        <blog_post
+          v-for="post in posts"
+          v-bind:key="post.id"
+          v-bind:data-id="post.id"
+          v-bind:index="post.id"
+          v-bind:title="post.title"
+        ></blog_post>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('blog_post', {
+            props: ['title', 'index'],
+            template: '<h3>{{ index }}.{{ title }}</h3>'
+        })
+
+        const app20 = new Vue({
+            el: '#app20',
+            data: {
+                posts: [
+                    {id: 1, title: 'A'},
+                    {id: 2, title: 'B'},
+                    {id: 3, title: 'C'}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

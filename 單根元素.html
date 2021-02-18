@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 重構<blog_post>組件，接受單個post -->
+    <div id="app21">
+        <!-- <div :style="{ fontSize: postFontSize + 'em' }"> -->
+        <div :style="styleObject">
+            <blog_post
+              v-for="post in posts"
+              v-bind:key="post.id"
+              v-bind:data-id="post.id"
+              v-bind:post="post"
+            ></blog_post>
+        </div>
+        <!-- </div> -->
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('blog_post', {
+            props: ['post'],
+            template: `<h3>{{ post.id }}.{{ post.title }}</h3>`
+        })
+
+        const app20 = new Vue({
+            el: '#app21',
+            data: {
+                posts: [
+                    {id: 1, title: 'A'},
+                    {id: 2, title: 'B'},
+                    {id: 3, title: 'C'}
+                ],
+                // postFontSize: 1
+                styleObject: {
+                    color: 'red',
+                    fontSize: '1em'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

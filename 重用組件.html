@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app19">
+        <button_counter></button_counter>
+        <button_counter></button_counter>
+        <button_counter></button_counter>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('button_counter', {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++" class="js_btn">點擊了 {{ count }} 次</button>'
+        })
+
+        new Vue({
+            el: '#app19',
+        })
+    </script>
+</body>
+</html>

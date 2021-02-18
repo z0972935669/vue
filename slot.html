@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app23">
+        <layout>
+            <template v-slot:header>頁面標題</template>
+            <template v-slot:main>
+                <p class="txt">主要段落</p>
+            </template>
+            <template v-slot:footer>聯繫信息</template>
+        </layout>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+        // URL:https://cythilya.github.io/2017/10/11/vue-component-slot/
+        
+        Vue.component('layout', {
+            template: `
+                <div class="container">
+                    <header>
+                        <slot name="header"></slot>    
+                    </header>
+                    <main>
+                        <slot name="main"></slot>    
+                    </main>
+                    <footer>
+                        <slot name="footer"></slot>    
+                    </footer>
+                </div>
+            `
+        })
+
+        const app23 = new Vue({
+            el: '#app23'
+        })
+    </script>
+</body>
+</html>
